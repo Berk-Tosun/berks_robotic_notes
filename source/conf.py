@@ -17,7 +17,7 @@
 
 # -- Project information -----------------------------------------------------
 
-project = 'berks_robotic_notes'
+project = "Berk's Robotic Notes"
 copyright = '2021, Berk Tosun'
 author = 'Berk Tosun'
 
@@ -42,7 +42,7 @@ templates_path = ['_templates']
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
 # This pattern also affects html_static_path and html_extra_path.
-exclude_patterns = []
+exclude_patterns = [] # type: ignore
 
 
 # -- Options for HTML output -------------------------------------------------
