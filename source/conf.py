@@ -32,7 +32,7 @@ release = '0.0.1'
 # ones.
 extensions = [
     "sphinx.ext.autosectionlabel",
-    # "sphinx.ext.githubpages",
+    "sphinx.ext.githubpages",
 ]
 autosectionlabel_prefix_document = True
 
