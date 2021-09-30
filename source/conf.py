@@ -10,9 +10,10 @@
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 #
-# import os
+import pathlib
 # import sys
-# sys.path.insert(0, os.path.abspath('.'))
+# path_ext = pathlib.Path("./source/_ext").resolve()
+# sys.path.insert(0, str(path_ext))
 
 
 # -- Project information -----------------------------------------------------
@@ -33,11 +34,29 @@ release = '0.0.1'
 extensions = [
     "sphinx.ext.autosectionlabel",
     "sphinx.ext.githubpages",
+    # "sphinx.ext.mathjax",
+    "sphinx.ext.imgmath"
 ]
 autosectionlabel_prefix_document = True
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
+
+# mathjax_path = "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+# mathjax3_config = {
+#     "tex": {
+#         "packages": ["base", "ams", "physics"]
+#     }
+# }
+
+latex_engine = 'lualatex'
+imgmath_image_format = 'svg'
+imgmath_font_size = 12
+imgmath_latex_preamble = r"\usepackage{physics} \usepackage{mathptmx}" \
+    r"\usepackage{amsmath} \usepackage{tensor}"
+
+# def setup(app):
+#     app.add_css_file(str(pathlib.Path("./source/_static/custom.css").resolve()))
 
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
