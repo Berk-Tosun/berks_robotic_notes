@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>1. Fundamentals &#8212; berks_robotic_notes 0.0.1 documentation</title>
+    <title>1. Fundamentals &#8212; Berk&#39;s Robotic Notes 0.0.1 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/alabaster.css" />
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
@@ -14,7 +14,7 @@
     <script src="../_static/doctools.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Optimization" href="../optimization/index.html" />
+    <link rel="next" title="2. Single Body" href="single_body.html" />
     <link rel="prev" title="Dynamics" href="index.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
@@ -36,11 +36,40 @@
 <h1><span class="section-number">1. </span>Fundamentals<a class="headerlink" href="#fundamentals" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="frames">
 <h2><span class="section-number">1.1. </span>Frames<a class="headerlink" href="#frames" title="Permalink to this headline">¶</a></h2>
-<p>Some text here.</p>
+<p>A frame consists of</p>
+<ul class="simple">
+<li><p>3 coordinate vectors: <img class="math" src="../_images/math/639557cf5d190f4bf939eafd1b62b47f933fcede.svg" alt="\hat{x},\hat{y},\hat{z}"/></p></li>
+<li><p>An origin <img class="math" src="../_images/math/8b38b87ea5b58ef7c917b1a27c9b3cecb626efbe.svg" alt="O"/></p></li>
+</ul>
+<p>which satisfies</p>
+<ul class="simple">
+<li><p><img class="math" src="../_images/math/639557cf5d190f4bf939eafd1b62b47f933fcede.svg" alt="\hat{x},\hat{y},\hat{z}"/> mutually orthogonal</p></li>
+<li><p>Right-handed i.e., <img class="math" src="../_images/math/69f1866fc161c045367fed38f68fa1ddefd9d0b8.svg" alt="\hat{x}\times\hat{y} = \hat{z}"/></p></li>
+</ul>
+</div>
+<div class="section" id="variable-frame-notation">
+<h2><span class="section-number">1.2. </span>Variable-Frame Notation<a class="headerlink" href="#variable-frame-notation" title="Permalink to this headline">¶</a></h2>
+<p>Consider two distinct frames A and B:</p>
+<div class="math">
+<p><img src="../_images/math/3bfeef119fa100b2e800e0c34f190fc335bc6d3c.svg" alt="&amp;Variable\ X\ represented\ in\ frame\ A:\ ^{A}X
+
+&amp;Coordinate\ vector\ \hat{x}\ of\ frame\ A\ (represented\ in\ frame\ A):\ \hat{x}_{A}
+
+&amp;Coordinate\ vector\ \hat{x}\ of\ frame\ A\ represented\ in\ frame\ B:\ ^{B}\hat{x}_{A}"/></p>
+</div></div>
+<div class="section" id="rotations">
+<h2><span class="section-number">1.3. </span>Rotations<a class="headerlink" href="#rotations" title="Permalink to this headline">¶</a></h2>
+<p>We will use rotation matrices. A rotation matrix specifies orientation of
+one frame relative to another.</p>
+<p>Consider 2 frames, A and B:</p>
 </div>
 <div class="section" id="vector-space">
-<h2><span class="section-number">1.2. </span>Vector Space<a class="headerlink" href="#vector-space" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">1.4. </span>Vector Space<a class="headerlink" href="#vector-space" title="Permalink to this headline">¶</a></h2>
 <p>Some other text here.</p>
+</div>
+<div class="section" id="plucker-coordinates">
+<h2><span class="section-number">1.5. </span>Plücker Coordinates<a class="headerlink" href="#plucker-coordinates" title="Permalink to this headline">¶</a></h2>
+<p>asd.</p>
 </div>
 </div>
 
@@ -51,7 +80,7 @@
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-<h1 class="logo"><a href="../index.html">berks_robotic_notes</a></h1>
+<h1 class="logo"><a href="../index.html">Berk's Robotic Notes</a></h1>
 
 
 
@@ -67,6 +96,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../optimization/index.html">Optimization</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../contact/index.html">Contact</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../legged_robots/index.html">Legged Robots</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../further_reading/index.html">Further Reading</a></li>
 </ul>
 
 <div class="relations">
@@ -75,7 +105,7 @@
   <li><a href="../index.html">Documentation overview</a><ul>
   <li><a href="index.html">Dynamics</a><ul>
       <li>Previous: <a href="index.html" title="previous chapter">Dynamics</a></li>
-      <li>Next: <a href="../optimization/index.html" title="next chapter">Optimization</a></li>
+      <li>Next: <a href="single_body.html" title="next chapter"><span class="section-number">2. </span>Single Body</a></li>
   </ul></li>
   </ul></li>
 </ul>

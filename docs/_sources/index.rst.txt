@@ -1,5 +1,5 @@
-Welcome to berks_robotic_notes!
-===============================
+Welcome to Berk's Robotic Notes!
+================================
 
 Feel :doc:`free <license>` to use it.
 
@@ -11,7 +11,7 @@ Feel :doc:`free <license>` to use it.
     Optimization <optimization/index>
     Contact <contact/index>
     Legged Robots <legged_robots/index>
-
+    Further Reading <further_reading/index>
 
 .. Indices and tables
 .. ==================
