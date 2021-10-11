@@ -23,7 +23,9 @@ Consider two distinct frames A and B:
 
   &Variable\ X\ represented\ in\ frame\ A:\ ^{A}X 
 
-  &Coordinate\ vector\ \hat{x}\ of\ frame\ A\ (represented\ in\ frame\ A):\ \hat{x}_{A}
+  &Coordinate\ vector\ \hat{x}\ of\ frame\ A:\ \hat{x}_{A}
+  
+  &Coordinate\ vector\ \hat{x}\ of\ frame\ A\ represented\ in\ frame\ A:\ ^{A}\hat{x}_{A}
 
   &Coordinate\ vector\ \hat{x}\ of\ frame\ A\ represented\ in\ frame\ B:\ ^{B}\hat{x}_{A} 
 

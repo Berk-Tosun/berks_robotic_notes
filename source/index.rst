@@ -5,7 +5,7 @@ Feel :doc:`free <license>` to use it.
 
 .. toctree::
     :caption: Table of Contents
-    :maxdepth: 1
+    :maxdepth: 3
     
     Dynamics <dynamics/index>
     Optimization <optimization/index>
