@@ -64,10 +64,56 @@
 <p>We will use rotation matrices. A rotation matrix specifies orientation of
 one frame relative to another.</p>
 <p>Consider 2 frames, A and B:</p>
+<div class="math">
+<p><img src="../_images/math/bd2fde5dc8dba759a5147275c110fcc03d8c81e2.svg" alt="^{A}R_{B} = [^{A}\hat{x}_{B}\ ^{A}\hat{y}_{B}\ ^{A}\hat{z}_{B}] \in \mathbb{R}^{3\times3}"/></p>
+</div><div class="section" id="properties">
+<h3><span class="section-number">1.3.1. </span>Properties<a class="headerlink" href="#properties" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p><img class="math" src="../_images/math/19aa76d0073f079e9ed885a42dd1fd322e9f6a22.svg" alt="R^\mathsf{T}R=I"/></p></li>
+<li><p><img class="math" src="../_images/math/75f8c033e1b392048866b871ce26c05c10dcbb78.svg" alt="det(R)=1"/></p></li>
+</ul>
+</div>
+<div class="section" id="change-of-basis">
+<h3><span class="section-number">1.3.2. </span>Change of Basis<a class="headerlink" href="#change-of-basis" title="Permalink to this headline">¶</a></h3>
+<p>To express vector r in frame A:</p>
+<div class="math">
+<p><img src="../_images/math/155b568c19bb8a47f5672b68b6b73af1e8546f17.svg" alt="^{A}r=\ ^{A}R_B\ ^{B}r"/></p>
+</div></div>
 </div>
 <div class="section" id="vector-space">
 <h2><span class="section-number">1.4. </span>Vector Space<a class="headerlink" href="#vector-space" title="Permalink to this headline">¶</a></h2>
-<p>Some other text here.</p>
+<div class="section" id="operations">
+<h3><span class="section-number">1.4.1. </span>Operations<a class="headerlink" href="#operations" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Vector addition: <img class="math" src="../_images/math/0bdcf19a9dacb3d5ba93fab243adb7b761cb106e.svg" alt="\forall{v_1, v_2} \in V, v_1 + v_2 \in V"/></p></li>
+<li><p>Scalar multiplication: <img class="math" src="../_images/math/5eb2eef3aa94cba07332ddf30c613d8399c5396d.svg" alt="\forall{v} \in V, \alpha \in \mathbb{R}; \alpha \cdot v \in V"/></p></li>
+</ul>
+</div>
+<div class="section" id="set-of-vector-fields">
+<h3><span class="section-number">1.4.2. </span>Set of Vector Fields<a class="headerlink" href="#set-of-vector-fields" title="Permalink to this headline">¶</a></h3>
+<p>Define <img class="math" src="../_images/math/c381fbac57d070579a527cac411b7c03b3c4eb4a.svg" alt="\Phi^n"/> as a set of vector fields over <img class="math" src="../_images/math/8dc5d496ab0d032e3af8c3f2eee8f577bc8e529b.svg" alt="\mathbb{R}^n"/>.</p>
+</div>
+<div class="section" id="dimensions">
+<h3><span class="section-number">1.4.3. </span>Dimensions<a class="headerlink" href="#dimensions" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>V is of dimension n if a basis exists for V</p></li>
+<li><p>V is an infinite dimensional vector space if no finite basis exists</p></li>
+</ul>
+<div class="topic">
+<p class="topic-title">Example</p>
+<ul>
+<li><p><img class="math" src="../_images/math/978ab56fa636f439e6195e761eb7ac883005b38b.svg" alt="\mathbb{R}^3"/> is a 3-dim vector space, with a sample basis such as</p>
+<p><img class="math" src="../_images/math/6887c05921d1ddf7cf398333ddc934f4e81e9ee8.svg" alt="\begin{bmatrix} 1 \\ 0 \\ 0 \end{bmatrix}"/>
+<img class="math" src="../_images/math/3935db41b2336b5871fa84381f85f137b76cb4e0.svg" alt="\begin{bmatrix} 0 \\ 1 \\ 0 \end{bmatrix}"/>
+<img class="math" src="../_images/math/92f0671d79bb0ba16655fcd991fb10eabeee8ea5.svg" alt="\begin{bmatrix} 0 \\ 0 \\ 1 \end{bmatrix}"/></p>
+</li>
+<li><p>Vector field <img class="math" src="../_images/math/81876ecb0511452b8223106b301df6be61492bf5.svg" alt="\Phi^3"/> is an <img class="math" src="../_images/math/851e50ea371c2e8b49b62c506584ea0c624987e5.svg" alt="\infty"/>-dim vector space.</p>
+<p>It requires 3 quantities to describe a vector in <img class="math" src="../_images/math/81876ecb0511452b8223106b301df6be61492bf5.svg" alt="\Phi^3"/>; however, a vector field consists
+of infinite number of vectors.</p>
+</li>
+</ul>
+</div>
+</div>
 </div>
 <div class="section" id="plucker-coordinates">
 <h2><span class="section-number">1.5. </span>Plücker Coordinates<a class="headerlink" href="#plucker-coordinates" title="Permalink to this headline">¶</a></h2>
