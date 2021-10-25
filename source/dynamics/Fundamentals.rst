@@ -41,13 +41,56 @@ one frame relative to another.
 
 Consider 2 frames, A and B:
 
-..     ^{A}R_{B} = [^{A}\hat{x}_{B}^{A}\hat{y}_{B} ^{A}\hat{z}_{B}]
+.. math::
 
+  ^{A}R_{B} = [^{A}\hat{x}_{B}\ ^{A}\hat{y}_{B}\ ^{A}\hat{z}_{B}] \in \mathbb{R}^{3\times3}
+
+Properties
+^^^^^^^^^^
+
+* :math:`R^\mathsf{T}R=I`
+* :math:`det(R)=1`
+
+Change of Basis
+^^^^^^^^^^^^^^^
+
+To express vector r in frame A:
+
+.. math::
+  ^{A}r=\ ^{A}R_B\ ^{B}r
 
 Vector Space
 ------------
 
-Some other text here.
+Operations
+^^^^^^^^^^
+
+* Vector addition: :math:`\forall{v_1, v_2} \in V, v_1 + v_2 \in V`
+* Scalar multiplication: :math:`\forall{v} \in V, \alpha \in \mathbb{R}; \alpha \cdot v \in V`
+
+Set of Vector Fields
+^^^^^^^^^^^^^^^^^^^^
+
+Define :math:`\Phi^n` as a set of vector fields over :math:`\mathbb{R}^n`.
+
+Dimensions
+^^^^^^^^^^
+
+* V is of dimension n if a basis exists for V
+* V is an infinite dimensional vector space if no finite basis exists
+
+.. topic:: Example
+
+  * :math:`\mathbb{R}^3` is a 3-dim vector space, with a sample basis such as
+    
+    :math:`\begin{bmatrix} 1 \\ 0 \\ 0 \end{bmatrix}`
+    :math:`\begin{bmatrix} 0 \\ 1 \\ 0 \end{bmatrix}`
+    :math:`\begin{bmatrix} 0 \\ 0 \\ 1 \end{bmatrix}`
+
+  * Vector field :math:`\Phi^3` is an :math:`\infty`-dim vector space.
+
+    It requires 3 quantities to describe a vector in :math:`\Phi^3`; however, a vector field consists
+    of infinite number of vectors.
 
 Plücker Coordinates
 -------------------
