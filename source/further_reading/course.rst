@@ -2,7 +2,8 @@ Course
 ======
 
 * In my notes, I used Patrick M. Wensing's course `Optimization-Based Robotics 
-  <http://sites.nd.edu/pwensing/ame-60621/>`_ to create the outline. 
+  <http://sites.nd.edu/pwensing/ame-60621/>`_ to create the outline. In addition,
+  I embed his course notes into my notes.
 
   * You can get the course notes from the website.     
   * Use an e-mail and ask Professor Wensing for the recording of previous
