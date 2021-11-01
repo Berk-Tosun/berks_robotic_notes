@@ -14,7 +14,7 @@
     <script src="../_static/doctools.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Optimization" href="../optimization/index.html" />
+    <link rel="next" title="3. Multi Body" href="multi_body.html" />
     <link rel="prev" title="1. Fundamentals" href="Fundamentals.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
@@ -36,7 +36,7 @@
 <h1><span class="section-number">2. </span>Single Body<a class="headerlink" href="#single-body" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="spatial-velocity">
 <h2><span class="section-number">2.1. </span>Spatial Velocity<a class="headerlink" href="#spatial-velocity" title="Permalink to this headline">¶</a></h2>
-<p>Spatial velocity is defined as a <a class="reference internal" href="Fundamentals.html#set-of-vector-fields"><span class="std std-ref">Set of Vector Fields</span></a>. It is different then the conventional
+<p>Spatial velocity is defined as a <a class="reference internal" href="Fundamentals.html#vector-field"><span class="std std-ref">Vector Field</span></a>. It is different then the conventional
 sense of velocity. Conventional velocity is defined as a single vector.</p>
 <p>A good way to think of the spatial velocity is to think that the body extends to
 infinity in all directions. All points on body will have a certain velocity in the
@@ -45,7 +45,7 @@ which we define as the spatial velocity.</p>
 <p>Let’s continue with an example.</p>
 <div class="section" id="spinning-top">
 <h3><span class="section-number">2.1.1. </span>Spinning Top<a class="headerlink" href="#spinning-top" title="Permalink to this headline">¶</a></h3>
-<p>Example: spinning top on a cart.</p>
+<p>We will use an example: spinning top on a cart to explain following sections.</p>
 <table class="docutils align-default">
 <colgroup>
 <col style="width: 50%" />
@@ -87,29 +87,213 @@ uniquely define the vector field.</p>
 <div class="figure align-default">
 <img alt="../_images/spatial_vel_6d.png" src="../_images/spatial_vel_6d.png" />
 </div>
-<div class="admonition attention">
+<div class="admonition attention" id="dim-velocity">
 <p class="admonition-title">Attention</p>
 <p>The set of vectors describing rigid body velocities is a 6-dim vector space.</p>
 </div>
+<p>As we write the spatial velocity as a 6-dim vector, we concatenate the linear and
+angular components. Their order verify from author to author, we use angular
+components first.</p>
+<div class="topic" id="example-1">
+<p class="topic-title">Example 1</p>
+<div class="figure align-default">
+<img alt="../_images/spinning_top_v.png" src="../_images/spinning_top_v.png" />
+</div>
+</div>
+<p>The coordinate system such as the one in the above example is used to construct
+a basis which defines all possible rigid body motion. This basis is called as the
+<a class="reference internal" href="Fundamentals.html#plucker-coordinates"><span class="std std-ref">Plücker Coordinates</span></a>. Then using them, we can express
+the velocity in the example as following:</p>
+<div class="math">
+<p><img src="../_images/math/7e4e408429a6576f1d6474d2b758341550ec90df.svg" alt="V_{top} = w_x e_1 + w_y e_2 + w_z e_3 + v_x e_4 + v_y e_5 + v_z e_6
+
+where\ V_{top} \in M \subseteq \Phi^3"/></p>
+</div></div>
+</div>
+<div class="section" id="transforming-spatial-velocity">
+<h2><span class="section-number">2.2. </span>Transforming Spatial Velocity<a class="headerlink" href="#transforming-spatial-velocity" title="Permalink to this headline">¶</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Check out <a class="reference internal" href="Fundamentals.html#variable-frame-notation"><span class="std std-ref">Variable-Frame Notation</span></a></p>
+</div>
+<p>Consider a moving rigid body; two coordinate frames, A and B can be used to
+express its velocity. To transform between them:</p>
+<div class="figure align-right">
+<a class="reference internal image-reference" href="../_images/transforming_spatial_vectors.png"><img alt="../_images/transforming_spatial_vectors.png" src="../_images/transforming_spatial_vectors.png" style="width: 291.0px; height: 201.6px;" /></a>
+</div>
+<div class="math">
+<p><img src="../_images/math/ac1705f9738a9ad5bb4d90b3997a3c66f78ded6e.svg" alt="^{A}V =\ \begin{bmatrix} ^{A}w \\ ^{A}v_A \end{bmatrix}
+\ ^{B}V =\ \begin{bmatrix} ^{B}w \\ ^{B}v_B \end{bmatrix}"/></p>
+</div><div class="math">
+<p><img src="../_images/math/a4af7b36180f34a01e619abbd6c6486e25d96018.svg" alt="v_B &amp;=\ v_A\ +\ w \times p_{B/A}
+
+&amp;= v_A\ +\ p_{A/B} \times w"/></p>
+</div><div class="math">
+<p><img src="../_images/math/16bc25bea0c031778a3c0ebe37c154cfb679a045.svg" alt="^{B}v &amp;=\
+\begin{bmatrix}
+  ^{B}w \\
+  \rule[.5ex]{1.5em}{0.4pt} \\
+  ^{B}v_B
+\end{bmatrix}
+
+&amp;=\
+\begin{bmatrix}
+  ^{B}R_A &amp; \rule[-1ex]{0.5pt}{2.5ex} &amp; 0 \\
+  \rule[.5ex]{5em}{0.4pt} &amp; &amp; \rule[.5ex]{2em}{0.4pt} \\
+  ^{B}P_{A/B} \times\ ^{B}R_A &amp; \rule[-1ex]{0.5pt}{2.5ex} &amp; ^{B}R_A
+\end{bmatrix}
+\begin{bmatrix}
+  ^{A}w \\
+  \rule[.5ex]{1.5em}{0.4pt} \\
+  ^{A}v_A
+\end{bmatrix}
+
+&amp;=\
+\begin{bmatrix}
+  ^{B}R_A &amp; \rule[-1ex]{0.5pt}{2.5ex} &amp; 0 \\
+  \rule[.5ex]{5em}{0.4pt} &amp; &amp; \rule[.5ex]{2em}{0.4pt} \\
+  S(\ ^{B}P_{A/B}) ^{B}R_A &amp; \rule[-1ex]{0.5pt}{2.5ex} &amp; ^{B}R_A
+\end{bmatrix}
+\begin{bmatrix}
+  ^{A}w \\
+  \rule[.5ex]{1.5em}{0.4pt} \\
+  ^{A}v_A
+\end{bmatrix}
+
+&amp;=\
+^{B}X_A
+\begin{bmatrix}
+  ^{A}w \\
+  \rule[.5ex]{1.5em}{0.4pt} \\
+  ^{A}v_A
+\end{bmatrix}
+=\ ^{B}X_A\ ^{A}v"/></p>
+</div><p>We obtained <img class="math" src="../_images/math/a1166473b9ce37823ad05a59219ada2c549d90e0.svg" alt="^{B}X_A"/> which allows a change of basis from Plucker coords
+with respect to frame A to frame B. Meanwhile we also defined <img class="math" src="../_images/math/9fbb57a989cf1b4b002bf869a357d3a91fa4a096.svg" alt="S()"/> to
+replace cross-product, for clarity. (<a class="reference internal" href="Fundamentals.html#cross-product"><span class="std std-ref">Cross product</span></a>)</p>
+</div>
+<div class="section" id="moving-frames">
+<h2><span class="section-number">2.3. </span>Moving Frames<a class="headerlink" href="#moving-frames" title="Permalink to this headline">¶</a></h2>
+<div class="figure align-right">
+<a class="reference internal image-reference" href="../_images/moving_frames_acc.png"><img alt="../_images/moving_frames_acc.png" src="../_images/moving_frames_acc.png" style="width: 343.20000000000005px; height: 192.8px;" /></a>
+</div>
+<div class="math">
+<p><img src="../_images/math/ffc2758ece6e548031d3c55ccb462bfb5a67e496.svg" alt="^{A}r(t) =\ \begin{bmatrix} r_x \\ r_y \\ r_z \end{bmatrix}"/></p>
+</div><div class="math">
+<p><img src="../_images/math/021a049fc2d0cee15e99f263e6e61030b28f1e73.svg" alt="^{O}r &amp;=\ ^{O}R_A\ ^{A}r
+
+^{O}\dot{r} &amp;=\ ^{O}\dot{R}_A\ ^{A}r\ +\ ^{O}R_A\dv{^{A}r}{t}
+
+&amp;=\ S(^{O}w_A)\ ^{O}{R}_A\ ^{A}r\ +\ ^{O}R_A\dv{^{A}r}{t}
+
+&amp;=\ ^{O}w_A \times\ ^{O}r\ +\ ^{O}R_A\dv{^{A}r}{t}
+
+^{A}\dot{r} &amp;=\ ^{A}w_A \times\ ^{A}r\ + \dv{^{A}r}{t}"/></p>
+</div><p>where the first term stands for coordinate axes moving; and the second term
+for the change in coordinates.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><img class="math" src="../_images/math/a345034f6bcfb2545b45ea023768fe52e97a8474.svg" alt="w \times r"/> is meaningful without coordinates. We say this operation is
+coordinate invariant.</p>
+<p>Considering the drawing above, we could compute <img class="math" src="../_images/math/86b5ac154a935d363d6d53c00bd4aa0a8ce42e6e.svg" alt="^{O}w \times ^{O}r"/> as
+following:</p>
+<div class="math">
+<p><img src="../_images/math/da295fe98c89d7fd0250ea8f3cc0bdcdb6cd2ddf.svg" alt="&amp;=\ ^{O}R_A(\ ^{A}w \times ^{A}r)
+
+&amp;=\ (^{O}R_A\ ^{A}w) \times (^{O}R_A\ ^{A}r)"/></p>
+</div><p>So, it does not matter much where the computation is performed. It is easy to
+change/assign a coordinate frame.</p>
 </div>
 </div>
 <div class="section" id="spatial-acceleration">
-<h2><span class="section-number">2.2. </span>Spatial Acceleration<a class="headerlink" href="#spatial-acceleration" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">2.4. </span>Spatial Acceleration<a class="headerlink" href="#spatial-acceleration" title="Permalink to this headline">¶</a></h2>
+<p>Just like spatial velocity, spatial acceleration is a vector field and it is
+equal to</p>
+<div class="math">
+<p><img src="../_images/math/3b4ca6efdf32b9797db1af202ac6f085087900b6.svg" alt="a_{top} = \dv{V_{top}}{t}"/></p>
+</div><p>Similar to spatial velocity, spatial acceleration is defined
+by a <a class="reference internal" href="#dim-velocity"><span class="std std-ref">6-dim vector space</span></a>.</p>
+<p>Consider <a class="reference internal" href="#example-1">Example 1</a>, its spatial acceleration is 0 everywhere. Considering
+frame O is inertially fixed:</p>
+<div class="math">
+<p><img src="../_images/math/7cf0e2b71f6c3a14c3481e171aa0205d76efab65.svg" alt="^{O}a_{top} = \begin{bmatrix} ^{O}\dot{w}_{top}\ \\ ^{O}[a_{top}(0)] \end{bmatrix}"/></p>
+</div><p>in which</p>
+<ul class="simple">
+<li><p>First three components give angular acceleration.</p></li>
+<li><p>Last three give rate of change in flow of body-fixed particles through {O}.</p></li>
+</ul>
+<div class="topic" id="example-2">
+<p class="topic-title">Example 2</p>
+<div class="figure align-default">
+<img alt="../_images/top_on_skateboard_acc.png" src="../_images/top_on_skateboard_acc.png" />
+</div>
+</div>
+</div>
+<div class="section" id="spatial-cross-product">
+<h2><span class="section-number">2.5. </span>Spatial Cross Product<a class="headerlink" href="#spatial-cross-product" title="Permalink to this headline">¶</a></h2>
+<div class="figure align-right">
+<a class="reference internal image-reference" href="../_images/spatial_cross_product.png"><img alt="../_images/spatial_cross_product.png" src="../_images/spatial_cross_product.png" style="width: 225.60000000000002px; height: 186.4px;" /></a>
+</div>
+<div class="math">
+<p><img src="../_images/math/3347820b163eb8b98f359b31cfd124dc1bcf4811.svg" alt="^{O}v_{body} = \begin{bmatrix} ^{O}w_{body} \\ ^{O}v_{body[O]} \end{bmatrix}\
+^{O}v_A = \begin{bmatrix} ^{O}w_A \\ ^{O}v_{A[O]} \end{bmatrix}"/></p>
+</div><div class="math">
+<p><img src="../_images/math/a939707e8583608c25b56f81881a13a27af4d457.svg" alt="^{O}a_{body} &amp;= \dv{[\ ^{O}v_{body}]}{t}
+
+&amp;= \dv{[\ ^{O}X_A\ ^{A}v_{body}]}{t}
+
+&amp;=\ ^{O}\dot{X}_A\ ^{A}v_{body} + ^{O}X_A\ \dv{\ ^{A}v_{body}}{t}
+
+&amp;=\
+\begin{bmatrix}
+  S(\ ^{O}w_A) &amp; 0 \\
+  S(\ ^{O}v_{A[O]}) &amp; S(\ ^{O}w_A)
+\end{bmatrix}
+\ ^{O}X_A\ ^{A}v_{body} + ^{O}X_A\ \dv{\ ^{A}v_{body}}{t}
+
+&amp;=\
+\bold{^{O}v_A \times}
+\ ^{O}X_A\ ^{A}v_{body} + ^{O}X_A\ \dv{\ ^{A}v_{body}}{t}"/></p>
+</div><p>Here we introduced <img class="math" src="../_images/math/97eceda0bd8db7187903d16118846d642717f7e3.svg" alt="\bold{^{O}v_A \times}"/> as the spatial cross product.</p>
+<ul>
+<li><p>In frame O:</p>
+<div class="math">
+<p><img src="../_images/math/fb91ade2fabf1f338569699aeebd1220a6a8e4ac.svg" alt="^{O}a_{body}\ =\
+^{O}v_A \times
+\ ^{O}v_{body} + ^{O}X_A\ \dv{\ ^{A}v_{body}}{t}"/></p>
+</div></li>
+<li><p>In frame A:</p>
+<div class="math">
+<p><img src="../_images/math/f9b4b98b39df6713a3621de8c6cdee8d3c715dd2.svg" alt="^{A}a_{body}\ =\
+^{A}v_A \times
+\ ^{A}v_{body} + \dv{\ ^{A}v_{body}}{t}"/></p>
+</div></li>
+</ul>
+<div class="admonition attention">
+<p class="admonition-title">Attention</p>
+<p>As seen in two samples above: spatial cross product is coordinate invariant.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Note the structural similarity with the <a class="reference internal" href="#moving-frames">Moving Frames</a>.</p>
+<p>The first term accounts for the moving coordinate; second term for the
+changing coordinates</p>
+</div>
 </div>
 <div class="section" id="relationship-between-spatial-conventional-acceleration">
-<h2><span class="section-number">2.3. </span>Relationship Between Spatial &amp; Conventional Acceleration<a class="headerlink" href="#relationship-between-spatial-conventional-acceleration" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">2.6. </span>Relationship Between Spatial &amp; Conventional Acceleration<a class="headerlink" href="#relationship-between-spatial-conventional-acceleration" title="Permalink to this headline">¶</a></h2>
 </div>
 <div class="section" id="spatial-forces">
-<h2><span class="section-number">2.4. </span>Spatial Forces<a class="headerlink" href="#spatial-forces" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">2.7. </span>Spatial Forces<a class="headerlink" href="#spatial-forces" title="Permalink to this headline">¶</a></h2>
 </div>
 <div class="section" id="spatial-momentum">
-<h2><span class="section-number">2.5. </span>Spatial Momentum<a class="headerlink" href="#spatial-momentum" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">2.8. </span>Spatial Momentum<a class="headerlink" href="#spatial-momentum" title="Permalink to this headline">¶</a></h2>
 </div>
 <div class="section" id="spatial-dynamics">
-<h2><span class="section-number">2.6. </span>Spatial Dynamics<a class="headerlink" href="#spatial-dynamics" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">2.9. </span>Spatial Dynamics<a class="headerlink" href="#spatial-dynamics" title="Permalink to this headline">¶</a></h2>
 </div>
 <div class="section" id="summary">
-<h2><span class="section-number">2.7. </span>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">2.10. </span>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
 </div>
 </div>
 
@@ -136,14 +320,18 @@ uniquely define the vector field.</p>
 <li class="toctree-l2"><a class="reference internal" href="Fundamentals.html">1. Fundamentals</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">2. Single Body</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#spatial-velocity">2.1. Spatial Velocity</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#spatial-acceleration">2.2. Spatial Acceleration</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#relationship-between-spatial-conventional-acceleration">2.3. Relationship Between Spatial &amp; Conventional Acceleration</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#spatial-forces">2.4. Spatial Forces</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#spatial-momentum">2.5. Spatial Momentum</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#spatial-dynamics">2.6. Spatial Dynamics</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#summary">2.7. Summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#transforming-spatial-velocity">2.2. Transforming Spatial Velocity</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#moving-frames">2.3. Moving Frames</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#spatial-acceleration">2.4. Spatial Acceleration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#spatial-cross-product">2.5. Spatial Cross Product</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#relationship-between-spatial-conventional-acceleration">2.6. Relationship Between Spatial &amp; Conventional Acceleration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#spatial-forces">2.7. Spatial Forces</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#spatial-momentum">2.8. Spatial Momentum</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#spatial-dynamics">2.9. Spatial Dynamics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#summary">2.10. Summary</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="multi_body.html">3. Multi Body</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../optimization/index.html">Optimization</a></li>
@@ -158,7 +346,7 @@ uniquely define the vector field.</p>
   <li><a href="../index.html">Documentation overview</a><ul>
   <li><a href="index.html">Dynamics</a><ul>
       <li>Previous: <a href="Fundamentals.html" title="previous chapter"><span class="section-number">1. </span>Fundamentals</a></li>
-      <li>Next: <a href="../optimization/index.html" title="next chapter">Optimization</a></li>
+      <li>Next: <a href="multi_body.html" title="next chapter"><span class="section-number">3. </span>Multi Body</a></li>
   </ul></li>
   </ul></li>
 </ul>

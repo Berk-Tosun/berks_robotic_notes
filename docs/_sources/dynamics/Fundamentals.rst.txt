@@ -1,8 +1,8 @@
 Fundamentals
 ============
 
-Frames
-------
+Frame
+-----
 
 A frame consists of
 
@@ -27,12 +27,14 @@ Consider two distinct frames A and B:
   
   &Coordinate\ vector\ \hat{x}\ of\ frame\ A\ represented\ in\ frame\ A:\ ^{A}\hat{x}_{A}
 
-  &Coordinate\ vector\ \hat{x}\ of\ frame\ A\ represented\ in\ frame\ B:\ ^{B}\hat{x}_{A} 
+  &Coordinate\ vector\ \hat{x}\ of\ frame\ A\ represented\ in\ frame\ B:\ ^{B}\hat{x}_{A}
+
+  &Spatial\ velocity\ for\ a\ rigid\ body,\ Body,\ sampled\ at\ point\ P:\ v_{Body[P]} 
 
 .. \tensor[^B]{\hat{x}}{_x}
 
-Rotations
----------
+Rotation
+--------
 
 We will use rotation matrices. A rotation matrix specifies orientation of 
 one frame relative to another.
@@ -68,10 +70,10 @@ Operations
 * Vector addition: :math:`\forall{v_1, v_2} \in V, v_1 + v_2 \in V`
 * Scalar multiplication: :math:`\forall{v} \in V, \alpha \in \mathbb{R}; \alpha \cdot v \in V`
 
-Set of Vector Fields
-^^^^^^^^^^^^^^^^^^^^
+Vector Field
+^^^^^^^^^^^^
 
-Define :math:`\Phi^n` as a set of vector fields over :math:`\mathbb{R}^n`.
+Define :math:`\Phi^n` as a vector field over :math:`\mathbb{R}^n`.
 
 Dimensions
 ^^^^^^^^^^
@@ -95,4 +97,25 @@ Dimensions
 Plücker Coordinates
 -------------------
 
-asd.
+Velocity
+^^^^^^^^
+
+For a given `Frame`_, say Frame A, we can define following 6 basis vector fields:
+
+  * :math:`e_1`: Pure rotation about :math:`\hat{x}_A`
+  * :math:`e_2`: Pure rotation about :math:`\hat{y}_A`
+  * :math:`e_3`: Pure rotation about :math:`\hat{z}_A`
+  * :math:`e_4`: Pure translation about :math:`\hat{x}_A`
+  * :math:`e_5`: Pure translation about :math:`\hat{y}_A`
+  * :math:`e_6`: Pure translation about :math:`\hat{z}_A`
+
+Such that 
+
+.. math:: 
+
+  M = Span(\begin{bmatrix} e_1 \\ e_2 \\ e_3 \\ e_4 \\ e_5 \\ e_6 \end{bmatrix}) \subseteq \Phi^3
+
+Cross product
+-------------
+
+
