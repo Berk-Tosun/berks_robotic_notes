@@ -102,20 +102,40 @@ Velocity
 
 For a given `Frame`_, say Frame A, we can define following 6 basis vector fields:
 
-  * :math:`e_1`: Pure rotation about :math:`\hat{x}_A`
-  * :math:`e_2`: Pure rotation about :math:`\hat{y}_A`
-  * :math:`e_3`: Pure rotation about :math:`\hat{z}_A`
-  * :math:`e_4`: Pure translation about :math:`\hat{x}_A`
-  * :math:`e_5`: Pure translation about :math:`\hat{y}_A`
-  * :math:`e_6`: Pure translation about :math:`\hat{z}_A`
+  * :math:`d_1`: Pure rotation about :math:`\hat{x}_A`
+  * :math:`d_2`: Pure rotation about :math:`\hat{y}_A`
+  * :math:`d_3`: Pure rotation about :math:`\hat{z}_A`
+  * :math:`d_4`: Pure translation about :math:`\hat{x}_A`
+  * :math:`d_5`: Pure translation about :math:`\hat{y}_A`
+  * :math:`d_6`: Pure translation about :math:`\hat{z}_A`
 
 Such that 
 
 .. math:: 
 
-  M = Span(\begin{bmatrix} e_1 \\ e_2 \\ e_3 \\ e_4 \\ e_5 \\ e_6 \end{bmatrix}) \subseteq \Phi^3
+  M = Span(\begin{bmatrix} d_1 \\ d_2 \\ d_3 \\ d_4 \\ d_5 \\ d_6 \end{bmatrix}) \subseteq \Phi^3
+
+Force
+^^^^^
+
+Similarly defined for forces around the 6 coord. directions, denoted with e.
 
 Cross product
 -------------
 
+.. math::
+  S(w) = \begin{bmatrix} 
+    0 & -w_z & w_y \\
+    w_z & 0 & -w_x \\
+    -w_y & w_x & 0 
+    \end{bmatrix}
 
+Spatial Cross product
+---------------------
+
+.. math::
+  Spatial\ velocity:\ &V = \begin{bmatrix} w \\ \rule[.5ex]{1.5em}{0.4pt} \\ v \end{bmatrix}
+
+  Spatial\ cross\ product:\ &V \times = \begin{bmatrix} S(w) & 0 \\ S(v) & S(w) \end{bmatrix}
+
+where S(.) is the `Cross product`_.

@@ -1,6 +1,14 @@
 Single Body
 ===========
 
+.. note::
+  This page is rather detailed, it tries to follow the lectures of Prof. Patrick Wensing closely.
+  It does not look like the best approach: takes a long time to produce and 
+  gets crowded. I want this notes to be brief and to the point.
+  
+  Next chapters are more refined. Instead of using this page following is strongly
+  recommended :ref:`dynamics/primer_spatial:Primer on Spatial Dynamics`.
+
 Spatial Velocity
 ----------------
 
@@ -210,8 +218,8 @@ in which
 
   .. figure:: ../images/top_on_skateboard_acc.png
 
-Spatial Cross Product
----------------------
+Spatial Cross Product - Velocity
+--------------------------------
 
 .. figure:: ../images/spatial_cross_product.png
   :scale: 20%
@@ -236,10 +244,10 @@ Spatial Cross Product
   \ ^{O}X_A\ ^{A}v_{body} + ^{O}X_A\ \dv{\ ^{A}v_{body}}{t} 
 
   &=\ 
-  \bold{^{O}v_A \times}
+  \bold{[^{O}v_A \times]}
   \ ^{O}X_A\ ^{A}v_{body} + ^{O}X_A\ \dv{\ ^{A}v_{body}}{t} 
 
-Here we introduced :math:`\bold{^{O}v_A \times}` as the spatial cross product.
+Here we introduced :math:`\bold{[^{O}v_A \times]}` as the spatial cross product.
 
 * In frame O:
   
@@ -264,22 +272,100 @@ Here we introduced :math:`\bold{^{O}v_A \times}` as the spatial cross product.
   The first term accounts for the moving coordinate; second term for the 
   changing coordinates
 
+.. topic:: Example 3
+  :name: Example 3
+
+  .. figure:: ../images/top_on_skateboard_acc_moving.png
+
 Relationship Between Spatial & Conventional Acceleration
 --------------------------------------------------------
 
+.. todo::
+  Clear it up, find better equations(?)
+
+:math:`\dot{v}_o`: time rate of change of velocity of body-fixed particles at point O.
+
+.. figure:: ../images/rel_btwn_spatial_conv_acc.png
 
 Spatial Forces
 --------------
 
+.. figure:: ../images/spatial_forces_intro.png
+  :scale: 20%
+  :align: right
+
+It is a 6-dim vector which combines a force through a point and a moment through
+the same point.
+
+.. math::
+  ^{B}F &= \begin{bmatrix} ^{B}n_B \\ ^{B}f \end{bmatrix}
+
+  ^{A}F &= \begin{bmatrix} ^{A}n_A \\ ^{A}f \end{bmatrix}
+
+  &= \begin{bmatrix} ^{A}R_B\ ^{B}n_B & -^{A}R_B\ ^{B}P_{A/B} \times\ ^{B}f  \\ ^{A}R_B\ ^{B}f\end{bmatrix}
+
+  &= \begin{bmatrix} ^{A}R_B\ -\ ^{A}R_B\ S(^{B}P_{A/B}) \\ 0 & ^{A}R_B \end{bmatrix}
+  \begin{bmatrix} ^{B}n_B \\ ^{B}f \end{bmatrix}
+
+  &=\ \bold{^{A}X^{*}_B}\ ^{B}f
+
+which defines the transform for the spatial forces.
+
+.. attention::
+  Relationship between spatial force transforms and `Transforming Spatial Velocity`_:
+
+    :math:`^{B}X^{T}_A =\ ^{A}X^{*}_B`
 
 Spatial Momentum
 ----------------
 
+.. figure:: ../images/spatial_mom_intro.png
+  :scale: 30%
+  :align: right
+
+In a similar fashion to other spatial quantities we combine angular and linear
+momentum to get a 6-dim vector. {c} denotes center of mass (CoM), whereas {A}
+is the origin of some arbitrary frame.
+
+.. math::
+  ^{c}h &= \begin{bmatrix} ^{c}K_c \\ \rule[.5ex]{2em}{0.4pt} \\ ^{c}l \end{bmatrix}
+
+  &= \begin{bmatrix} ^{c}\overline{I}\ ^{c}w \\ m\ ^{c}v_c \end{bmatrix}
+
+  &= \begin{bmatrix} ^{c}\overline{I}\ & 0 \\ 0 & m 1_{3x3} \end{bmatrix}
+  \begin{bmatrix} ^{c}w \\ ^{c}v_c \end{bmatrix}
+
+.. math:: 
+  ^{A}h &= \begin{bmatrix} ^{A}K_A \\ ^{A}l \end{bmatrix}
+
+  &= \begin{bmatrix} ^{A}R_c\ ^{c}K_c -\ ^{A}R_c [^{c}P_{A/C} \times]\ ^{c}l \\ ^{A}R_c\ ^{c}l \end{bmatrix}
+
+  &=\ ^{A}X^{*}_c\ ^{c}h
+
+  &=\ ^{A}X^{*}_c\ ^{c}I\ ^{c}v
+
+  &=\ ^{A}X^{*}_c\ ^{c}I\ ^{c}X_A\ ^{A}v
+
+  &=\ ^{A}I\ ^{A}v
 
 Spatial Dynamics
 ----------------
 
+.. figure:: ../images/spatial_dyn_intro.png
 
-Summary
--------
+.. math::
+  ^{o}h &= \begin{bmatrix} ^{o}K_o \\ ^{o}l \end{bmatrix} =\ ^{o}X^{*}_A\ ^{A}I\ ^{A}X_o\ ^{o}v_A
 
+  &=\ ^{o}I\ ^{o}v_A
+
+  \dv{\ ^{o}h}{t} &= \begin{bmatrix} ^{o}n_o \\ ^{o}f \end{bmatrix} =\ ^{o}F
+
+  &= ...
+
+  &=\ ^{o}I\ ^{o}a_A + \bold{[^{o}V_A \times^{*}]}\ ^{o}I\ ^{o}v_A 
+
+We introduced a new spatial cross product above; this one can be used for forces 
+and momenta.
+
+.. attention::
+  Resulting equation is valid for any frame: moving, non-center of mass, etc.
