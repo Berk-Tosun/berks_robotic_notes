@@ -21,4 +21,5 @@ Featherstone also points out how they help to think of dynamics in a higher abst
     Fundamentals
     Single Body <single_body>
     Primer on Spatial Dynamics <primer_spatial>
-    Multi Body <multi_body>
+    Multibody <multibody>
+    Identification <identification>

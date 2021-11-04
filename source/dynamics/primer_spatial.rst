@@ -136,7 +136,9 @@ Or equivalently :ref:`dynamics/single_body:Spatial Forces`.
 
 .. note::
   .. math::
-    ^{B}X^{*}_A = (\ ^{B}X_A)^{-T}
+    ^{B}X^{*}_A &= (\ ^{B}X_A)^{-T}
+    
+    ^{B}X^{*}_A &= (\ ^{A}X_B)^T
 
 Spatial Cross Product
 ^^^^^^^^^^^^^^^^^^^^^
