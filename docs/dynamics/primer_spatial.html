@@ -1,0 +1,332 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>3. Primer on Spatial Dynamics &#8212; Berk&#39;s Robotic Notes 0.0.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="4. Multibody" href="multibody.html" />
+    <link rel="prev" title="2. Single Body" href="single_body.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="primer-on-spatial-dynamics">
+<h1><span class="section-number">3. </span>Primer on Spatial Dynamics<a class="headerlink" href="#primer-on-spatial-dynamics" title="Permalink to this headline">¶</a></h1>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This section is a rough summary of
+“Roy Featherstone, 2010, A Beginner’s Guide to 6-D Vectors (Part 1)”</p>
+</div>
+<div class="section" id="definitons">
+<h2><span class="section-number">3.1. </span>Definitons<a class="headerlink" href="#definitons" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="spatial-velocity-twist">
+<h3><span class="section-number">3.1.1. </span>Spatial Velocity (Twist)<a class="headerlink" href="#spatial-velocity-twist" title="Permalink to this headline">¶</a></h3>
+<p>As a motion vector, velocity <img class="math" src="../_images/math/b8f2a09bfad39fa8954fa78777f164fbd4dac1d9.svg" alt="v \in M^{6}"/>.</p>
+<div class="math">
+<p><img src="../_images/math/3347568e1120d26393722b8fc895de8a03bb4e84.svg" alt="v =\
+\begin{bmatrix}
+  w \\
+  \rule[.5ex]{1.5em}{0.4pt} \\
+  v_B
+\end{bmatrix}
+=\
+\begin{bmatrix}
+  w_x \\
+  w_y \\
+  w_z \\
+  \rule[.5ex]{1.5em}{0.4pt} \\
+  v_x \\
+  v_y \\
+  v_z \\
+\end{bmatrix}"/></p>
+</div></div>
+<div class="section" id="spatial-acceleration">
+<h3><span class="section-number">3.1.2. </span>Spatial Acceleration<a class="headerlink" href="#spatial-acceleration" title="Permalink to this headline">¶</a></h3>
+<p>As a motion vector, acceleration <img class="math" src="../_images/math/25af7c73db4f482252340f1f3272d141cc66cd21.svg" alt="a \in M^{6}"/>.</p>
+<div class="math">
+<p><img src="../_images/math/cbdf74e3c338f0ea96325973a024ddc246e61ca4.svg" alt="a = \dv{v}{t} = \dfrac{d}{dt}\ \begin{bmatrix} w \\ v \end{bmatrix}
+= \begin{bmatrix} \dot{w} \\ \ddot{r} - w \times \dot{r} \end{bmatrix}"/></p>
+</div><p>where <img class="math" src="../_images/math/2c4736fa0f9ebd58a1590b58337c9ee53a051e75.svg" alt="r = \vec{OO'}"/>. O is a fixed point in space. <img class="math" src="../_images/math/b61c898d7685516d2661b73e6817c0136f94d9b0.svg" alt="O'"/> is
+the body-fixed point that momentarily coincides with O. Thus, <img class="math" src="../_images/math/c240d253cd20762a1eab6d9a156e4b5f831b443a.svg" alt="r=0"/> initially,
+but it is non-zero in general.</p>
+</div>
+<div class="section" id="spatial-force-wrench">
+<h3><span class="section-number">3.1.3. </span>Spatial Force (Wrench)<a class="headerlink" href="#spatial-force-wrench" title="Permalink to this headline">¶</a></h3>
+<p>Force vector <img class="math" src="../_images/math/95d641c2b2e64bab04624c03390c65ece552320f.svg" alt="f \in F^{6}"/>. Combines a moment (denoted with n) and a force in a 6-dim vector.</p>
+<div class="math">
+<p><img src="../_images/math/4a39e8072a6646191e71d5e52de715731d54d1e3.svg" alt="\hat{f} =\
+\begin{bmatrix}
+  n \\
+  \rule[.5ex]{1.5em}{0.4pt} \\
+  f
+\end{bmatrix}
+=\
+\begin{bmatrix}
+  n_x \\
+  n_y \\
+  n_z \\
+  \rule[.5ex]{1.5em}{0.4pt} \\
+  f_x \\
+  f_y \\
+  f_z \\
+\end{bmatrix}"/></p>
+</div></div>
+<div class="section" id="spatial-inertia">
+<h3><span class="section-number">3.1.4. </span>Spatial Inertia<a class="headerlink" href="#spatial-inertia" title="Permalink to this headline">¶</a></h3>
+<div class="math">
+<p><img src="../_images/math/4118ec7497790a0ef443f2f6871de33b3ad54fae.svg" alt="I =
+\begin{bmatrix}
+  \overline{I}_c + m c \times c\times^{T} &amp; m c \times \\
+  m c\times^{T} &amp; m 1
+\end{bmatrix}"/></p>
+</div><p>where</p>
+<ul class="simple">
+<li><p>m is the body’s mass</p></li>
+<li><p>c is a 3-D vector locating the body’s CoM</p></li>
+<li><p><img class="math" src="../_images/math/6925d6682a7b6c4981e38b79a9563dba7ccc9966.svg" alt="\overline{I}_c"/> is the body’s rotational inertia about its CoM</p></li>
+</ul>
+<p>Or equivalently <a class="reference internal" href="single_body.html#spatial-momentum"><span class="std std-ref">Spatial Momentum</span></a>.</p>
+<p><strong>Coordinate-Transformation</strong></p>
+<div class="math">
+<p><img src="../_images/math/9f50c4f0ea177dcf3384ba722fa6ee021b0b5464.svg" alt="^{B}I = ^{B}X^{*}_A\ ^{A}I\ ^{A}X_B"/></p>
+</div></div>
+<div class="section" id="spatial-momentum">
+<h3><span class="section-number">3.1.5. </span>Spatial Momentum<a class="headerlink" href="#spatial-momentum" title="Permalink to this headline">¶</a></h3>
+<div class="math">
+<p><img src="../_images/math/e284f1b85e354a87e29639da013b9808ec5c4b1e.svg" alt="h = Iv"/></p>
+</div></div>
+<div class="section" id="spatial-equation-of-motion">
+<h3><span class="section-number">3.1.6. </span>Spatial Equation of Motion<a class="headerlink" href="#spatial-equation-of-motion" title="Permalink to this headline">¶</a></h3>
+<div class="math">
+<p><img src="../_images/math/eef4fdbd6bfcd4d203b709343354b341530d863e.svg" alt="f = \dv{h}{t} = \dv{Iv}{t} = Ia + v \times^{*} Iv"/></p>
+</div><p>See <a class="reference internal" href="#force-vector-cross-product">Force Vector Cross Product</a>.</p>
+</div>
+<div class="section" id="coordinate-transforms">
+<h3><span class="section-number">3.1.7. </span>Coordinate Transforms<a class="headerlink" href="#coordinate-transforms" title="Permalink to this headline">¶</a></h3>
+<p>6-dim spatial vectors use <a class="reference internal" href="Fundamentals.html#plucker-coordinates"><span class="std std-ref">Plücker Coordinates</span></a>.
+For coordinate <a class="reference internal" href="Fundamentals.html#frame"><span class="std std-ref">frames</span></a> A and B.</p>
+<div class="section" id="spatial-motion-transform">
+<h4><span class="section-number">3.1.7.1. </span>Spatial Motion Transform<a class="headerlink" href="#spatial-motion-transform" title="Permalink to this headline">¶</a></h4>
+<div class="math">
+<p><img src="../_images/math/2bd594df26c0ca9e7fd46684bea50267909f6e1f.svg" alt="^{B}m =\ ^{B}X_A\ ^{A}m
+
+^{B}X_A = \begin{bmatrix} ^{B}R_A &amp; 0 \\ 0 &amp; ^{B}R_A \end{bmatrix}
+\begin{bmatrix} 1 &amp; 0 \\ S(-r) &amp; 1 \end{bmatrix}"/></p>
+</div><p>Or equivalently <a class="reference internal" href="single_body.html#transforming-spatial-velocity"><span class="std std-ref">Transforming Spatial Velocity</span></a>.</p>
+</div>
+<div class="section" id="spatial-force-momentum-transform">
+<h4><span class="section-number">3.1.7.2. </span>Spatial Force/Momentum Transform<a class="headerlink" href="#spatial-force-momentum-transform" title="Permalink to this headline">¶</a></h4>
+<div class="math">
+<p><img src="../_images/math/2135a7abc566675c685405297e4a96e8e13d9c03.svg" alt="^{B}f =\ ^{B}X^{*}_A\ ^{A}f
+
+^{B}X_A = \begin{bmatrix} ^{B}R_A &amp; 0 \\ 0 &amp; ^{B}R_A \end{bmatrix}
+\begin{bmatrix} 1 &amp; S(-r) \\ 0 &amp; 1 \end{bmatrix}"/></p>
+</div><p>Or equivalently <a class="reference internal" href="single_body.html#spatial-forces"><span class="std std-ref">Spatial Forces</span></a>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<div class="math">
+<p><img src="../_images/math/557893b68522c641cb5d9c20f71796abf5272be1.svg" alt="^{B}X^{*}_A &amp;= (\ ^{B}X_A)^{-T}
+
+^{B}X^{*}_A &amp;= (\ ^{A}X_B)^T"/></p>
+</div></div>
+</div>
+</div>
+<div class="section" id="spatial-cross-product">
+<h3><span class="section-number">3.1.8. </span>Spatial Cross Product<a class="headerlink" href="#spatial-cross-product" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="motion-vector-cross-product">
+<h3><span class="section-number">3.1.9. </span>Motion Vector Cross Product<a class="headerlink" href="#motion-vector-cross-product" title="Permalink to this headline">¶</a></h3>
+<p>Defined for motion vector with motion vector, i.e. <img class="math" src="../_images/math/c430f378c7cf1d4a5c6042bb4517777c1b325f17.svg" alt="m \times m"/></p>
+<div class="math">
+<p><img src="../_images/math/9735859c4e5ead3356bdf7aeef5393e4cb1cd330.svg" alt="Spatial\ velocity/acceleration :\ &amp;V = \begin{bmatrix} w \\ \rule[.5ex]{1.5em}{0.4pt} \\ v \end{bmatrix}
+
+Spatial\ cross\ product:\ &amp;V \times = \begin{bmatrix} S(w) &amp; 0 \\ S(v) &amp; S(w) \end{bmatrix}"/></p>
+</div><p>where S(.) is the <a class="reference internal" href="Fundamentals.html#cross-product"><span class="std std-ref">Cross product</span></a>.</p>
+</div>
+<div class="section" id="force-vector-cross-product">
+<h3><span class="section-number">3.1.10. </span>Force Vector Cross Product<a class="headerlink" href="#force-vector-cross-product" title="Permalink to this headline">¶</a></h3>
+<p>Defined for motion vector with force vector, i.e. <img class="math" src="../_images/math/52cad0920aacebdeab8716186cfcb0d89047cc51.svg" alt="m \times^{*} f"/></p>
+<div class="math">
+<p><img src="../_images/math/f34ea10252cd25aaa05f6905caab48bfa77b46c3.svg" alt="Spatial\ velocity/acceleration:\ &amp;V = \begin{bmatrix} w \\ \rule[.5ex]{1.5em}{0.4pt} \\ v \end{bmatrix}
+
+Spatial\ force\ cross\ product:\ &amp;V \times^{*} = \begin{bmatrix} S(w) &amp; S(v) \\ 0 &amp; S(w) \end{bmatrix}"/></p>
+</div><p>where S(.) is the <a class="reference internal" href="Fundamentals.html#cross-product"><span class="std std-ref">Cross product</span></a>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<div class="math">
+<p><img src="../_images/math/0cae5d61c3e6e3b226349010fcc92cbae89088c5.svg" alt="v \times^{*} = -v \times^{T}"/></p>
+</div></div>
+</div>
+</div>
+<div class="section" id="using-spatial-vectors">
+<h2><span class="section-number">3.2. </span>Using Spatial Vectors<a class="headerlink" href="#using-spatial-vectors" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="relative-velocity">
+<h3><span class="section-number">3.2.1. </span>Relative Velocity<a class="headerlink" href="#relative-velocity" title="Permalink to this headline">¶</a></h3>
+<div class="math">
+<p><img src="../_images/math/1e250eadb6b153510cbc51d2a39ee86d45e6f299.svg" alt="v_{rel} = v_2 - v_1"/></p>
+</div></div>
+<div class="section" id="relative-acceleration">
+<h3><span class="section-number">3.2.2. </span>Relative Acceleration<a class="headerlink" href="#relative-acceleration" title="Permalink to this headline">¶</a></h3>
+<div class="math">
+<p><img src="../_images/math/c8f89956e52c5558b4c4a5efe13b247a8d46ddde.svg" alt="a_{rel} = \dv{v_{rel}}{t} = a_2 - a_1"/></p>
+</div><div class="admonition attention">
+<p class="admonition-title">Attention</p>
+<p>Simpler than conventional acceleration.</p>
+</div>
+</div>
+<div class="section" id="summation-of-forces">
+<h3><span class="section-number">3.2.3. </span>Summation of Forces<a class="headerlink" href="#summation-of-forces" title="Permalink to this headline">¶</a></h3>
+<div class="math">
+<p><img src="../_images/math/f610d64cc1726d9658102e488ac5d323af88073e.svg" alt="f_{tot} = f_1 + f_2"/></p>
+</div></div>
+<div class="section" id="action-and-reaction">
+<h3><span class="section-number">3.2.4. </span>Action and Reaction<a class="headerlink" href="#action-and-reaction" title="Permalink to this headline">¶</a></h3>
+<p>If body <img class="math" src="../_images/math/dd9785203517849ea2c8d9dc654e3ca157c4125d.svg" alt="B_1"/> exerts a force f on body <img class="math" src="../_images/math/363c1688666085d6333f9cf87eaa9cd82cf5a88e.svg" alt="B_2"/>, then <img class="math" src="../_images/math/363c1688666085d6333f9cf87eaa9cd82cf5a88e.svg" alt="B_2"/> exerts
+a force of -f as reaction to <img class="math" src="../_images/math/dd9785203517849ea2c8d9dc654e3ca157c4125d.svg" alt="B_1"/>.</p>
+</div>
+<div class="section" id="scalar-product">
+<h3><span class="section-number">3.2.5. </span>Scalar product<a class="headerlink" href="#scalar-product" title="Permalink to this headline">¶</a></h3>
+<div class="math">
+<p><img src="../_images/math/ba9e0b44b464fe3f091a36a7bd85c3c24989775e.svg" alt="Power = f \cdot v"/></p>
+</div></div>
+<div class="section" id="scalar-multiplication">
+<h3><span class="section-number">3.2.6. </span>Scalar multiplication<a class="headerlink" href="#scalar-multiplication" title="Permalink to this headline">¶</a></h3>
+<p>Spatial vector, motion or force, s has magnitudes <img class="math" src="../_images/math/76cb2a2e261f4a5f3b0d07abcbc0c922ef8c075a.svg" alt="m_1, m_2"/> and line l.</p>
+<p>Then <img class="math" src="../_images/math/ccd5564c1d9d4824e8842c6bfe8ead42e266d362.svg" alt="\alpha"/> s has magnitudes <img class="math" src="../_images/math/a2af2e9f78264b4b4afa2388cdc24c2ba1392bbd.svg" alt="\alpha m_1, \alpha m_2"/> and line l.</p>
+</div>
+<div class="section" id="differentiation">
+<h3><span class="section-number">3.2.7. </span>Differentiation<a class="headerlink" href="#differentiation" title="Permalink to this headline">¶</a></h3>
+<p>For a motion vector, <img class="math" src="../_images/math/6d1154c2b5e0a58aaab56165a3c1caa8bbe59bf3.svg" alt="m \in M^{6}"/> and a force vector, <img class="math" src="../_images/math/95d641c2b2e64bab04624c03390c65ece552320f.svg" alt="f \in F^{6}"/>
+that are fixed in a body having a velocity of v, then</p>
+<div class="math">
+<p><img src="../_images/math/4abf5cc0e4d8cbf3beb6e4c251bb9968181d492f.svg" alt="\dot{m} = v \times m
+
+\dot{f} = v \times^{*} f"/></p>
+</div><p>See <a class="reference internal" href="#spatial-cross-product">Spatial Cross Product</a>.</p>
+</div>
+<div class="section" id="summation-of-inertias">
+<h3><span class="section-number">3.2.8. </span>Summation of Inertias<a class="headerlink" href="#summation-of-inertias" title="Permalink to this headline">¶</a></h3>
+<p>For rigidly connected bodies: <img class="math" src="../_images/math/54525446b3b2b25be1c4c704fffb26f434166513.svg" alt="I_{tot} = I_1 + I_2"/></p>
+</div>
+<div class="section" id="motion-constraints">
+<h3><span class="section-number">3.2.9. </span>Motion Constraints<a class="headerlink" href="#motion-constraints" title="Permalink to this headline">¶</a></h3>
+<p>A statement of D’Alembert’s principle of virtual work for spatial vectors:</p>
+<blockquote>
+<div><p>If the relative velocity of two rigid bodies is constrained to lie in a subspace
+<img class="math" src="../_images/math/2206c0459b3e5f40f9673ee1df613e938dd48dec.svg" alt="S \subseteq M^{6}"/>, then the motion constraint is implemented by a constraint
+force lying in the subspace:</p>
+<div class="math">
+<p><img src="../_images/math/0b3703380dbf1568bbe4685932d405c1b55e6ba1.svg" alt="T = f \in F^{6}\ |\ f \cdot v=0\ \forall v \in S."/></p>
+</div></div></blockquote>
+</div>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">Berk's Robotic Notes</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Table of Contents</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Dynamics</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="Fundamentals.html">1. Fundamentals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="single_body.html">2. Single Body</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">3. Primer on Spatial Dynamics</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#definitons">3.1. Definitons</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#using-spatial-vectors">3.2. Using Spatial Vectors</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="multibody.html">4. Multibody</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../optimization/index.html">Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contact/index.html">Contact</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../legged_robots/index.html">Legged Robots</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../further_reading/index.html">Further Reading</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="index.html">Dynamics</a><ul>
+      <li>Previous: <a href="single_body.html" title="previous chapter"><span class="section-number">2. </span>Single Body</a></li>
+      <li>Next: <a href="multibody.html" title="next chapter"><span class="section-number">4. </span>Multibody</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2021, Berk Tosun.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.2.0</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../_sources/dynamics/primer_spatial.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
