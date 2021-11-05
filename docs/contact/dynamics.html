@@ -1,0 +1,191 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>2. Contact Dynamics &#8212; Berk&#39;s Robotic Notes 0.0.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/alabaster.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Legged Robots" href="../legged_robots/index.html" />
+    <link rel="prev" title="1. Fundamentals" href="Fundamentals.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="contact-dynamics">
+<h1><span class="section-number">2. </span>Contact Dynamics<a class="headerlink" href="#contact-dynamics" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="equation-of-motion">
+<h2><span class="section-number">2.1. </span>Equation of Motion<a class="headerlink" href="#equation-of-motion" title="Permalink to this headline">¶</a></h2>
+<p>By including the additional external force term, we generalize the EoM to full.</p>
+<div class="figure align-default">
+<img alt="../_images/contact_mapping_eom.png" src="../_images/contact_mapping_eom.png" />
+</div>
+</div>
+<div class="section" id="contact-modes">
+<h2><span class="section-number">2.2. </span>Contact Modes<a class="headerlink" href="#contact-modes" title="Permalink to this headline">¶</a></h2>
+<div class="figure align-default">
+<img alt="../_images/contact_modes_intro.png" src="../_images/contact_modes_intro.png" />
+</div>
+</div>
+<div class="section" id="which-contact-model-to-choose">
+<h2><span class="section-number">2.3. </span>Which Contact Model to Choose?<a class="headerlink" href="#which-contact-model-to-choose" title="Permalink to this headline">¶</a></h2>
+<div class="figure align-default">
+<img alt="../_images/contact_models_overview.png" src="../_images/contact_models_overview.png" />
+</div>
+<div class="section" id="compliant-contact">
+<h3><span class="section-number">2.3.1. </span>Compliant Contact<a class="headerlink" href="#compliant-contact" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Requires use of flight coordinates all the time.</p></li>
+<li><p>Commonly used model is assuming a damper and a spring at contact point in
+all directions. This approach which assumes linearity is not very realistic.</p></li>
+<li><p>Thus, contact force increases based on the amount of deformation.</p></li>
+<li><p><strong>Better</strong> approach is to project onto a friction cone.</p></li>
+<li><p>For hard terrain, equations become stiff, numerically unstable. Thus, requiring
+small time steps.</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>For numerical integration, ode45 assumes differentiability; whereas regular Euler
+integration which is 1st order does not. That means Euler will work better with
+contact, since it is discontinuous.</p>
+</div>
+</div>
+<div class="section" id="minimal-coordinates">
+<h3><span class="section-number">2.3.2. </span>Minimal Coordinates<a class="headerlink" href="#minimal-coordinates" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Use minimal coordinates when in contact. Its joint angles form the minimal
+coordinates.</p></li>
+<li><p>Can be solved as a regular, fixed-base system. Simplifies everything.</p></li>
+<li><p>However, that simplification is also a big disadvantage. The contact is not
+rigidly pinned, we do not consider the limitations.</p></li>
+<li><p>Another disadvantage, for every contact configuration it requires new coordinates.</p></li>
+<li><p>Useful for analytical work, e.g. proves.</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>We can run into multiple contact cases leading to closed chains.
+In that case, EoM requires some modification.</p>
+<div class="figure align-default">
+<img alt="../_images/contact_eom_closed_chain.png" src="../_images/contact_eom_closed_chain.png" />
+</div>
+</div>
+</div>
+<div class="section" id="excess-coordinates">
+<h3><span class="section-number">2.3.3. </span>Excess Coordinates<a class="headerlink" href="#excess-coordinates" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Use flight coordinates all the time.</p></li>
+<li><p>Connect body and ground through a virtual 6-dof joint.</p></li>
+<li><p>Split coordinates into base and joint. (In other words, into actuated and unactuated)</p></li>
+</ul>
+<div class="figure align-default">
+<img alt="../_images/contact_eom_excess_cord.png" src="../_images/contact_eom_excess_cord.png" />
+</div>
+</div>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">Berk's Robotic Notes</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Table of Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../dynamics/index.html">Dynamics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../optimization/index.html">Optimization</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Contact</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="Fundamentals.html">1. Fundamentals</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">2. Contact Dynamics</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#equation-of-motion">2.1. Equation of Motion</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#contact-modes">2.2. Contact Modes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#which-contact-model-to-choose">2.3. Which Contact Model to Choose?</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../legged_robots/index.html">Legged Robots</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../further_reading/index.html">Further Reading</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="index.html">Contact</a><ul>
+      <li>Previous: <a href="Fundamentals.html" title="previous chapter"><span class="section-number">1. </span>Fundamentals</a></li>
+      <li>Next: <a href="../legged_robots/index.html" title="next chapter">Legged Robots</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2021, Berk Tosun.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.2.0</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../_sources/contact/dynamics.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
